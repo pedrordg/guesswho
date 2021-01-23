@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{7D8C58C5-08D2-4F84-909A-14284F6F1C7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{31FD348C-FB3F-4B13-AB1D-8FD6BE2F681B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{3348DBF6-163F-4835-91ED-F5B296A77A08}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuessWho.Infrastructure.SignalR", "src\GuessWho.Infrastructure.SignalR\GuessWho.Infrastructure.SignalR.csproj", "{CF135E1B-272F-4F07-8F36-6E0D861665A7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuessWho.App", "src\GuessWho.App\GuessWho.App.csproj", "{F69597F7-5948-4F9D-B622-147F5A3B7F3E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CF135E1B-272F-4F07-8F36-6E0D861665A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF135E1B-272F-4F07-8F36-6E0D861665A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF135E1B-272F-4F07-8F36-6E0D861665A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF135E1B-272F-4F07-8F36-6E0D861665A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F69597F7-5948-4F9D-B622-147F5A3B7F3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F69597F7-5948-4F9D-B622-147F5A3B7F3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F69597F7-5948-4F9D-B622-147F5A3B7F3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F69597F7-5948-4F9D-B622-147F5A3B7F3E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7D8C58C5-08D2-4F84-909A-14284F6F1C7F} = {31FD348C-FB3F-4B13-AB1D-8FD6BE2F681B}
+		{3348DBF6-163F-4835-91ED-F5B296A77A08} = {31FD348C-FB3F-4B13-AB1D-8FD6BE2F681B}
+		{CF135E1B-272F-4F07-8F36-6E0D861665A7} = {3348DBF6-163F-4835-91ED-F5B296A77A08}
+		{F69597F7-5948-4F9D-B622-147F5A3B7F3E} = {7D8C58C5-08D2-4F84-909A-14284F6F1C7F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C410DA83-7BDB-4DC2-AC26-7BF8CB7654BF}
+	EndGlobalSection
+EndGlobal
