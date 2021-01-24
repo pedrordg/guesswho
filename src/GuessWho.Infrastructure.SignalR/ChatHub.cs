@@ -9,9 +9,9 @@ namespace GuessWho.Infrastructure.SignalR
             Clients.All.SendAsync("broadcastMessage", name, message);
         }
 
-        public void Echo(string name, string message)
+        public void Echo(string idolName)
         {
-            Clients.Client(Context.ConnectionId).SendAsync("echo", name, message + " (echo from server)");
+            Clients.AllExcept(Context.ConnectionId).SendAsync("echo", idolName + " card flipped");
         }
     }
 }
