@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GuessWho.Infrastructure.SignalR\GuessWho.Infrastructure.SignalR.csproj" />
+    <ProjectReference Include="..\GuessWho.Infrastructure.SignalR\GuessWho.SignalR.Hubs.csproj" />
   </ItemGroup>
 
 

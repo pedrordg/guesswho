@@ -7,11 +7,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{7D8C58C5-08D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{31FD348C-FB3F-4B13-AB1D-8FD6BE2F681B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{3348DBF6-163F-4835-91ED-F5B296A77A08}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SignalR", "SignalR", "{3348DBF6-163F-4835-91ED-F5B296A77A08}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuessWho.Infrastructure.SignalR", "src\GuessWho.Infrastructure.SignalR\GuessWho.Infrastructure.SignalR.csproj", "{CF135E1B-272F-4F07-8F36-6E0D861665A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuessWho.SignalR.Hubs", "src\GuessWho.Infrastructure.SignalR\GuessWho.SignalR.Hubs.csproj", "{CF135E1B-272F-4F07-8F36-6E0D861665A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessWho.App", "src\GuessWho.App\GuessWho.App.csproj", "{A81E8243-142C-4166-AC70-643FD31A6645}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuessWho.App", "src\GuessWho.App\GuessWho.App.csproj", "{A81E8243-142C-4166-AC70-643FD31A6645}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessWho.SignalR.Contracts", "src\GuessWho.SignalR.Contracts\GuessWho.SignalR.Contracts.csproj", "{62C014EC-244A-49B1-8577-0989B5F6AD6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{A81E8243-142C-4166-AC70-643FD31A6645}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A81E8243-142C-4166-AC70-643FD31A6645}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A81E8243-142C-4166-AC70-643FD31A6645}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62C014EC-244A-49B1-8577-0989B5F6AD6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62C014EC-244A-49B1-8577-0989B5F6AD6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62C014EC-244A-49B1-8577-0989B5F6AD6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62C014EC-244A-49B1-8577-0989B5F6AD6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +42,7 @@ Global
 		{3348DBF6-163F-4835-91ED-F5B296A77A08} = {31FD348C-FB3F-4B13-AB1D-8FD6BE2F681B}
 		{CF135E1B-272F-4F07-8F36-6E0D861665A7} = {3348DBF6-163F-4835-91ED-F5B296A77A08}
 		{A81E8243-142C-4166-AC70-643FD31A6645} = {7D8C58C5-08D2-4F84-909A-14284F6F1C7F}
+		{62C014EC-244A-49B1-8577-0989B5F6AD6B} = {3348DBF6-163F-4835-91ED-F5B296A77A08}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C410DA83-7BDB-4DC2-AC26-7BF8CB7654BF}
