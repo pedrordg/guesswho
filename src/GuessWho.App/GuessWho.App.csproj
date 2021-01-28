@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\GuessWho.Infrastructure.SignalR\GuessWho.SignalR.Hubs.csproj" />
   </ItemGroup>
 

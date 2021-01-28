@@ -52,7 +52,7 @@ namespace GuessWho.App
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<ChatHub>("/chat");
+                endpoints.MapHub<OldChatHub>("/chat");
             });
         }
     }
