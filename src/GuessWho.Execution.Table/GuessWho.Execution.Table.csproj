@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GuessWho.Execution.Contracts\GuessWho.Execution.Contracts.csproj" />
+    <ProjectReference Include="..\GuessWho.Execution.Dtos\GuessWho.Execution.Dtos.csproj" />
+    <ProjectReference Include="..\GuessWho.Infra.Blob.Contracts\GuessWho.Infra.Blob.Contracts.csproj" />
+    <ProjectReference Include="..\GuessWho.Infra.TableStorage.Contracts\GuessWho.Infra.TableStorage.Contracts.csproj" />
+    <ProjectReference Include="..\GuessWho.Models\GuessWho.Models.csproj" />
+  </ItemGroup>
+
+</Project>

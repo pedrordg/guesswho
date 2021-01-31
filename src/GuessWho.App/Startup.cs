@@ -1,4 +1,12 @@
+using Autofac;
+using AutoMapper;
+using GuessWho.Execution.Automapper;
+using GuessWho.Execution.Table;
 using GuessWho.Infrastructure.SignalR;
+using GuessWho.Models;
+using GuesWho.ExecutionDependencyInjection;
+using Matrix.PaymentGateway.Infra.Blob.Extensions;
+using Matrix.PaymentGateway.Infra.TableStorage.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,9 +29,14 @@ namespace GuessWho.App
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddOptions();
             services.AddLogging();
 
             services.AddControllers();
+
+            services.AddMvc();
+
+            services.AddRouting(options => options.LowercaseUrls = true);
 
             services.AddSignalR()
                     .AddAzureSignalR(options =>
@@ -31,6 +44,24 @@ namespace GuessWho.App
                         options.ConnectionString = _configuration.GetConnectionString("SignalR");
                         options.ApplicationName = "guesswho";
                     });
+
+            services.AddAutoMapper(typeof(GuessWhoProfile));
+
+            services.ConfigureBlob();
+
+            services.ConfigureStorageTable()
+                    .AddTable<IdolEntity>("idol")
+                    .AddTable<ThemeEntity>("theme")
+                    .Seed();
+        }
+
+        /// <summary>
+        /// Configures the container.
+        /// </summary>
+        /// <param name="containerBuilder">The container builder.</param>
+        public void ConfigureContainer(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.RegisterModule<ExecutionModule>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +72,8 @@ namespace GuessWho.App
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("AllowAll");
+
             app.UseHttpsRedirection();
 
             app.UseDefaultFiles();
@@ -48,6 +81,7 @@ namespace GuessWho.App
 
             app.UseRouting();
             app.UseAuthorization();
+            app.UseStatusCodePages();
 
             app.UseEndpoints(endpoints =>
             {

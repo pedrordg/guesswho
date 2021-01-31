@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Authors>Team Infante</Authors>
+    <Company>FiveºDegrees</Company>
+    <Product>Matrix.PaymentGateway.Infra.TableStorage</Product>
+    <CodeAnalysisRuleSet>..\..\.sonarlint\matrix.paymentgateway-cloud.infracsharp.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.Cosmos.Table" Version="1.0.8" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+  </ItemGroup>
+
+</Project>

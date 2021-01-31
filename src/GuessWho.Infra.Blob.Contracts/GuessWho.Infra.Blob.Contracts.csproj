@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+	<Authors>Team Infante</Authors>
+	<Company>FiveºDegrees</Company>
+	<Product>Payment Gateway</Product>
+    <CodeAnalysisRuleSet>Matrix.PaymentGateway.Infra.Blob.Contracts.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.8.0" />
+  </ItemGroup>
+
+</Project>
