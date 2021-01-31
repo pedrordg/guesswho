@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GuessWho.Execution.Automapper\GuessWho.Execution.Automapper.csproj" />
-    <ProjectReference Include="..\GuessWho.Execution.Contracts\GuessWho.Execution.Contracts.csproj" />
     <ProjectReference Include="..\GuessWho.Execution.Table\GuessWho.Execution.Table.csproj" />
     <ProjectReference Include="..\GuessWho.Infra.Blob\GuessWho.Infra.Blob.csproj" />
     <ProjectReference Include="..\GuessWho.Infra.TableStorage\GuessWho.Infra.TableStorage.csproj" />
