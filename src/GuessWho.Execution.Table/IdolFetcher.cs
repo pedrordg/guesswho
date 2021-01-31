@@ -44,7 +44,12 @@ namespace GuessWho.Execution.Table
 
             IEnumerable<IdolEntity> idols = (await _idolTable.QueryAsync(query));
 
-            return idols.Select(idol => _mapper.Map<IdolDto>(idol)).FirstOrDefault();
+            return idols.Select(idol =>
+            {
+                var dto = _mapper.Map<IdolDto>(idol);
+                dto.Pic = _blobReader.DownloadContent(string.Format("{0}/{1}", idol.PartitionKey, idol.RowKey)).Result;
+                return dto;
+            }).FirstOrDefault();
         }
     }
 }
