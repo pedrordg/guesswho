@@ -8,6 +8,6 @@ namespace GuessWho.Execution.Contracts
     {
         Task<IdolDto> GetIdolById(string themeId, string cardId);
 
-        Task<IEnumerable<IdolDto>> GetIdolsByTheme(string themeId);
+        Task<IEnumerable<IdolDto>> GetIdolsByDeck(string deckId);
     }
 }

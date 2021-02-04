@@ -19,6 +19,7 @@ namespace GuesWho.ExecutionDependencyInjection
         {
             builder.RegisterType<IdolCrud>().As<IIdolCrud>().InstancePerLifetimeScope();
             builder.RegisterType<IdolFetcher>().As<IIdolFetcher>().InstancePerLifetimeScope();
+            builder.RegisterType<DeckFetcher>().As<IDeckFetcher>().InstancePerLifetimeScope();
         }
     }
 }

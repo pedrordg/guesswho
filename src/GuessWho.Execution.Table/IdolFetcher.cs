@@ -24,9 +24,9 @@ namespace GuessWho.Execution.Table
             _blobReader = blobReader;
         }
 
-        public async Task<IEnumerable<IdolDto>> GetIdolsByTheme(string themeId)
+        public async Task<IEnumerable<IdolDto>> GetIdolsByDeck(string deckId)
         {
-            string query = FilterBuilder.CreateForPartitionKey(themeId);
+            string query = FilterBuilder.CreateForPartitionKey(deckId);
 
             IEnumerable<IdolEntity> idols = await _idolTable.QueryAsync(query);
 
@@ -38,9 +38,9 @@ namespace GuessWho.Execution.Table
             });
         }
 
-        public async Task<IdolDto> GetIdolById(string themeId, string cardId)
+        public async Task<IdolDto> GetIdolById(string deckId, string cardId)
         {
-            string query = FilterBuilder.CreateForPartitionKeyAndRowKey(themeId, cardId);
+            string query = FilterBuilder.CreateForPartitionKeyAndRowKey(deckId, cardId);
 
             IEnumerable<IdolEntity> idols = (await _idolTable.QueryAsync(query));
 

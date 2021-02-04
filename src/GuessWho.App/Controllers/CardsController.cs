@@ -1,5 +1,6 @@
 ﻿using GuessWho.Execution.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace GuessWho.App.Controllers
@@ -25,10 +26,10 @@ namespace GuessWho.App.Controllers
         }
 
         [HttpGet]
-        [Route("")]
-        public async Task<IActionResult> GetCards()
+        [Route("deck/{deckId}")]
+        public async Task<IActionResult> GetCardsByDeck(string deckId)
         {
-            var result = await _idolFetcher.GetIdolsByTheme(Constants.OurBiasTheme);
+            var result = await _idolFetcher.GetIdolsByDeck(Constants.OurBiasTheme);
             return Ok(result);
         }
     }
