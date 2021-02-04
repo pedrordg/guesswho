@@ -35,6 +35,12 @@ namespace GuessWho.App
             services.AddControllers();
 
             services.AddMvc();
+            services.AddCors(o => o.AddDefaultPolicy(builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
 
             services.AddRouting(options => options.LowercaseUrls = true);
 
@@ -72,7 +78,7 @@ namespace GuessWho.App
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors("AllowAll");
+            app.UseCors();
 
             app.UseHttpsRedirection();
 
