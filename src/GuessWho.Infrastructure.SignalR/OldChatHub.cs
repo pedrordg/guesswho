@@ -7,15 +7,16 @@ namespace GuessWho.Infrastructure.SignalR
     public class OldChatHub : Hub
     {
         //chat
-        public async Task BroadcastMessage(string name, string message)
+        public async Task SendMessage(string name, string message)
         {
-            await Clients.All.SendAsync("BroadcastMessage", name, message);
+            await Clients.All.SendAsync("SendMessage", name, message);
         }
 
         //test
         public async Task Echo(string idolName)
         {
-            await Clients.AllExcept(Context.ConnectionId).SendAsync("Echo", idolName + " card flipped");
+            //await Clients.All.SendAsync("Echo", idolName + " card flipped");
+            await Clients.All.SendAsync("Echo", idolName);
         }
 
         //game
@@ -36,12 +37,12 @@ namespace GuessWho.Infrastructure.SignalR
 
         public async Task AskQuestion(string question)
         {
-            await Clients.AllExcept(Context.ConnectionId).SendAsync("AskQuestion", question);
+            await Clients.AllExcept(Context.ConnectionId).SendAsync("receiveQuestion", question);
         }
 
         public async Task AnswerQuestion(AnswerTypes answerTypes)
         {
-            await Clients.AllExcept(Context.ConnectionId).SendAsync("AnswerQuestion", answerTypes.ToString());
+            await Clients.AllExcept(Context.ConnectionId).SendAsync("receiveAnswer", answerTypes.ToString());
         }
 
         //invitation

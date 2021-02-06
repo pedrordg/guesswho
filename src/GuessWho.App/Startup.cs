@@ -34,12 +34,14 @@ namespace GuessWho.App
 
             services.AddControllers();
 
-            services.AddMvc();
+            //services.AddMvc();
             services.AddCors(o => o.AddDefaultPolicy(builder =>
             {
                 builder.AllowAnyOrigin()
                        .AllowAnyMethod()
-                       .AllowAnyHeader();
+                       .AllowAnyHeader()
+                       .AllowCredentials()
+                       .WithOrigins("http://localhost:4200");
             }));
 
             services.AddRouting(options => options.LowercaseUrls = true);
@@ -82,12 +84,12 @@ namespace GuessWho.App
 
             app.UseHttpsRedirection();
 
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
+            //app.UseDefaultFiles();
+            //app.UseStaticFiles();
 
             app.UseRouting();
             app.UseAuthorization();
-            app.UseStatusCodePages();
+            //app.UseStatusCodePages();
 
             app.UseEndpoints(endpoints =>
             {
