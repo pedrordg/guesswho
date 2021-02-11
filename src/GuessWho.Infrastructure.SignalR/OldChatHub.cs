@@ -12,13 +12,6 @@ namespace GuessWho.Infrastructure.SignalR
             await Clients.All.SendAsync("SendMessage", name, message);
         }
 
-        //test
-        public async Task Echo(string idolName)
-        {
-            //await Clients.All.SendAsync("Echo", idolName + " card flipped");
-            await Clients.All.SendAsync("Echo", idolName);
-        }
-
         //game
         public async Task FlipCard(string cardPosition)
         {
@@ -28,11 +21,6 @@ namespace GuessWho.Infrastructure.SignalR
         public async Task GuessCard(int cardId)
         {
             await Clients.AllExcept(Context.ConnectionId).SendAsync("GuessCard", cardId);
-        }
-
-        public async Task PassTurn()
-        {
-            await Clients.AllExcept(Context.ConnectionId).SendAsync("PassTurn");
         }
 
         public async Task AskQuestion(string question)

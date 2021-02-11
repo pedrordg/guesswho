@@ -9,9 +9,12 @@ using Matrix.PaymentGateway.Infra.Blob.Extensions;
 using Matrix.PaymentGateway.Infra.TableStorage.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Net.Http.Headers;
+using System;
 
 namespace GuessWho.App
 {
@@ -33,6 +36,8 @@ namespace GuessWho.App
             services.AddLogging();
 
             services.AddControllers();
+
+            services.AddResponseCaching();
 
             //services.AddMvc();
             services.AddCors(o => o.AddDefaultPolicy(builder =>
@@ -82,14 +87,26 @@ namespace GuessWho.App
 
             app.UseCors();
 
-            app.UseHttpsRedirection();
+            app.UseResponseCaching();
 
-            //app.UseDefaultFiles();
-            //app.UseStaticFiles();
+            app.UseHttpsRedirection();
 
             app.UseRouting();
             app.UseAuthorization();
-            //app.UseStatusCodePages();
+
+            app.Use(async (context, next) =>
+            {
+                context.Response.GetTypedHeaders().CacheControl =
+                    new CacheControlHeaderValue()
+                    {
+                        Public = true,
+                        MaxAge = TimeSpan.FromMinutes(5)
+                    };
+                context.Response.Headers[HeaderNames.Vary] =
+                    new string[] { "Accept-Encoding" };
+
+                await next();
+            });
 
             app.UseEndpoints(endpoints =>
             {
