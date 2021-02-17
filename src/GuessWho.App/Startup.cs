@@ -7,12 +7,14 @@ using GuessWho.Models;
 using GuesWho.ExecutionDependencyInjection;
 using Matrix.PaymentGateway.Infra.Blob.Extensions;
 using Matrix.PaymentGateway.Infra.TableStorage.Extensions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Identity.Web;
 using Microsoft.Net.Http.Headers;
 using System;
 
@@ -27,13 +29,26 @@ namespace GuessWho.App
             _configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddOptions();
             services.AddLogging();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                   .AddMicrosoftIdentityWebApi(options =>
+                   {
+                       _configuration.Bind("AzureAdB2C", options);
+
+                       options.TokenValidationParameters.NameClaimType = "name";
+                   },
+            options => { _configuration.Bind("AzureAdB2C", options); });
+            services.AddAuthorization(options =>
+            {
+                //// Create policy to check for the scope 'read'
+                //options.AddPolicy("ReadScope",
+                //    policy => policy.Requirements.Add(new ScopesRequirement("read")));
+            });
 
             services.AddControllers();
 
@@ -92,6 +107,7 @@ namespace GuessWho.App
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.Use(async (context, next) =>
