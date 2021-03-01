@@ -1,9 +1,11 @@
 ﻿using GuessWho.SignalR.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 
 namespace GuessWho.Infrastructure.SignalR
 {
+    //[Authorize]
     public class OldChatHub : Hub
     {
         //chat
@@ -33,15 +35,26 @@ namespace GuessWho.Infrastructure.SignalR
             await Clients.AllExcept(Context.ConnectionId).SendAsync("receiveAnswer", answerTypes.ToString());
         }
 
-        //invitation
-        public async Task SendGameInvite(string player1Name, int player1Id)
+        //group
+        public async Task AddToGame(string groupName)
         {
-            await Clients.AllExcept(Context.ConnectionId).SendAsync("SendGameInvite", player1Name + " wants to play with you", player1Id);
+            await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
+
+            await Clients.Group(groupName).SendAsync("Send", $"{Context.ConnectionId} has joined the game {groupName}.");
         }
 
-        public async Task AnswerGameInvite(bool isInvitationAccepted, string player2Name, int player2Id)
+        public async Task RemoveFromGame(string groupName)
         {
-            await Clients.AllExcept(Context.ConnectionId).SendAsync("AnswerGameInvite", player2Name, player2Id);
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName);
+
+            await Clients.Group(groupName).SendAsync("Send", $"{Context.ConnectionId} has left the game {groupName}.");
+        }
+
+        public async Task BroadcastConnectionAsync()
+        {
+            await Clients.All.SendAsync("PlayerConnected", $"{Context.User.Identity.Name} is now online", Context.ConnectionId);
+
+            await base.OnConnectedAsync();
         }
     }
 }

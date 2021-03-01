@@ -1,5 +1,6 @@
 using Autofac;
 using AutoMapper;
+using GuessWho.App.IdProvider;
 using GuessWho.Execution.Automapper;
 using GuessWho.Execution.Table;
 using GuessWho.Infrastructure.SignalR;
@@ -10,13 +11,12 @@ using Matrix.PaymentGateway.Infra.TableStorage.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
-using Microsoft.Net.Http.Headers;
-using System;
+using System.Threading.Tasks;
 
 namespace GuessWho.App
 {
@@ -41,6 +41,24 @@ namespace GuessWho.App
                        _configuration.Bind("AzureAdB2C", options);
 
                        options.TokenValidationParameters.NameClaimType = "name";
+                       options.TokenValidationParameters.ValidateIssuer = true;
+                       options.Events = new JwtBearerEvents
+                       {
+                           OnMessageReceived = context =>
+                           {
+                               var accessToken = context.Request.Query["access_token"];
+
+                               // If the request is for our hub...
+                               var path = context.HttpContext.Request.Path;
+                               if (!string.IsNullOrEmpty(accessToken) &&
+                                   path.StartsWithSegments("/chat"))
+                               {
+                                   // Read the token out of the query string
+                                   context.Token = accessToken;
+                               }
+                               return Task.CompletedTask;
+                           }
+                       };
                    },
             options => { _configuration.Bind("AzureAdB2C", options); });
             services.AddAuthorization(options =>
@@ -51,21 +69,22 @@ namespace GuessWho.App
             });
 
             services.AddControllers();
-
+            services.AddHttpContextAccessor();
             services.AddResponseCaching();
 
             //services.AddMvc();
             services.AddCors(o => o.AddDefaultPolicy(builder =>
             {
-                builder.AllowAnyOrigin()
-                       .AllowAnyMethod()
+                builder.AllowAnyMethod()
                        .AllowAnyHeader()
                        .AllowCredentials()
-                       .WithOrigins("http://localhost:4200");
+                       .WithOrigins(new string[] { "http://localhost:4200", "https://guesswhoapp.azurewebsites.net/" });
             }));
 
             services.AddRouting(options => options.LowercaseUrls = true);
 
+
+            services.AddSingleton<IUserIdProvider, NameBasedUserIdProvider>();
             services.AddSignalR()
                     .AddAzureSignalR(options =>
                     {
@@ -102,7 +121,7 @@ namespace GuessWho.App
 
             app.UseCors();
 
-            app.UseResponseCaching();
+            //app.UseResponseCaching();
 
             app.UseHttpsRedirection();
 
@@ -110,19 +129,19 @@ namespace GuessWho.App
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.Use(async (context, next) =>
-            {
-                context.Response.GetTypedHeaders().CacheControl =
-                    new CacheControlHeaderValue()
-                    {
-                        Public = true,
-                        MaxAge = TimeSpan.FromMinutes(5)
-                    };
-                context.Response.Headers[HeaderNames.Vary] =
-                    new string[] { "Accept-Encoding" };
+            //app.Use(async (context, next) =>
+            //{
+            //    context.Response.GetTypedHeaders().CacheControl =
+            //        new CacheControlHeaderValue()
+            //        {
+            //            Public = true,
+            //            MaxAge = TimeSpan.FromMinutes(10)
+            //        };
+            //    context.Response.Headers[HeaderNames.Vary] =
+            //        new string[] { "Accept-Encoding" };
 
-                await next();
-            });
+            //    await next();
+            //});
 
             app.UseEndpoints(endpoints =>
             {
