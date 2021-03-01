@@ -1,11 +1,13 @@
 ﻿using GuessWho.SignalR.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace GuessWho.Infrastructure.SignalR
 {
-    //[Authorize]
+    [Authorize]
     public class OldChatHub : Hub
     {
         //chat
@@ -17,6 +19,7 @@ namespace GuessWho.Infrastructure.SignalR
         //game
         public async Task FlipCard(string cardPosition)
         {
+            var claims = String.Join(", ", Context.User.Claims.Select(x => { return $"{x.Type}:{x.Value}"; }).ToArray());
             await Clients.AllExcept(Context.ConnectionId).SendAsync("FlipCard", cardPosition);
         }
 
