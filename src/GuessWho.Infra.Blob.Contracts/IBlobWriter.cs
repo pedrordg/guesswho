@@ -1,13 +1,7 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IBlobWriter.cs" company="Five Degrees">
-// Copyright (c) Five Degrees. All rights reserved
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Matrix.PaymentGateway.Infra.Blob.Contracts
+namespace GuessWho.Infra.Blob.Contracts
 {
     /// <summary>
     /// Execute blob upload operations

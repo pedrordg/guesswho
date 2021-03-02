@@ -1,13 +1,7 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConfigureBlobOptions.cs" company="Five Degrees">
-// Copyright (c) Five Degrees. All rights reserved
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
-namespace Matrix.PaymentGateway.Infra.Blob.Configuration
+namespace GuessWho.Infra.Blob.Configuration
 {
     /// <summary>
     /// Configure Blob Options

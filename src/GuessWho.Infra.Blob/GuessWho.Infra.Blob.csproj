@@ -2,10 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-	<Authors>Team Infante</Authors>
-	<Company>FiveºDegrees</Company>
-	<Product>Payment Gateway</Product>
-    <CodeAnalysisRuleSet>Matrix.PaymentGateway.Infra.Blob.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>

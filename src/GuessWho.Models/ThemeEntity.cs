@@ -1,4 +1,4 @@
-﻿using Matrix.PaymentGateway.Infra.TableStorage.Contracts;
+﻿using GuessWho.Infra.TableStorage.Contracts;
 using Microsoft.Azure.Cosmos.Table;
 using System;
 

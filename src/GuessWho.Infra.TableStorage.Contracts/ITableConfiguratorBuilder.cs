@@ -6,7 +6,7 @@
 
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Matrix.PaymentGateway.Infra.TableStorage.Contracts
+namespace GuessWho.Infra.TableStorage.Contracts
 {
     public interface ITableConfiguratorBuilder
     {

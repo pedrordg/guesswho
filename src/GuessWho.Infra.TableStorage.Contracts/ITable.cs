@@ -8,7 +8,7 @@ using Microsoft.Azure.Cosmos.Table;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Matrix.PaymentGateway.Infra.TableStorage.Contracts
+namespace GuessWho.Infra.TableStorage.Contracts
 {
     public interface ITable<TTableEntity> where TTableEntity : class, ITableEntity
     {

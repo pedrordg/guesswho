@@ -1,12 +1,6 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BlobWriter.cs" company="Five Degrees">
-// Copyright (c) Five Degrees. All rights reserved
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-using Azure.Storage.Blobs;
+﻿using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
-using Matrix.PaymentGateway.Infra.Blob.Contracts;
+using GuessWho.Infra.Blob.Contracts;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -14,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Matrix.PaymentGateway.Infra.Blob
+namespace GuessWho.Infra.Blob
 {
     /// <inheritdoc cref="IBlobWriter">
     /// <seealso cref="IBlobWriter" />

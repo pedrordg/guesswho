@@ -1,5 +1,5 @@
 ﻿using GuessWho.Execution.Contracts;
-using Matrix.PaymentGateway.Infra.Blob.Contracts;
+using GuessWho.Infra.Blob.Contracts;
 using System.Threading.Tasks;
 
 namespace GuessWho.Execution.Table

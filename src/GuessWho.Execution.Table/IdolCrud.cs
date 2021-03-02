@@ -2,8 +2,8 @@
 using GuessWho.Execution.Contracts;
 using GuessWho.Execution.Dtos;
 using GuessWho.Execution.Table;
+using GuessWho.Infra.TableStorage.Contracts;
 using GuessWho.Models;
-using Matrix.PaymentGateway.Infra.TableStorage.Contracts;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;

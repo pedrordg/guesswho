@@ -1,12 +1,6 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="TableOptions.cs" company="Five Degrees">
-// Copyright (c) Five Degrees. All rights reserved
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
+﻿using System.Diagnostics.CodeAnalysis;
 
-using System.Diagnostics.CodeAnalysis;
-
-namespace Matrix.PaymentGateway.Infra.TableStorage.Configuration
+namespace GuessWho.Infra.TableStorage.Configuration
 {
     [ExcludeFromCodeCoverage]
     public class TableOptions

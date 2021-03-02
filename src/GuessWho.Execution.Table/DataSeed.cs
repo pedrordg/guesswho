@@ -1,6 +1,6 @@
 ﻿using GuessWho.Execution.Contracts;
+using GuessWho.Infra.TableStorage.Contracts;
 using GuessWho.Models;
-using Matrix.PaymentGateway.Infra.TableStorage.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;

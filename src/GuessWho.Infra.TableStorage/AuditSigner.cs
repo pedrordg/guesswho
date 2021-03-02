@@ -1,14 +1,8 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="AuditSigner.cs" company="Five Degrees">
-// Copyright (c) Five Degrees. All rights reserved
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-using Matrix.PaymentGateway.Infra.TableStorage.Contracts;
+﻿using GuessWho.Infra.TableStorage.Contracts;
 using Microsoft.Azure.Cosmos.Table;
 using System;
 
-namespace Matrix.PaymentGateway.Infra.TableStorage
+namespace GuessWho.Infra.TableStorage
 {
     /// <summary>
     /// 

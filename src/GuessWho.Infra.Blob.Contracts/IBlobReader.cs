@@ -1,14 +1,8 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IBlobReader.cs" company="Five Degrees">
-// Copyright (c) Five Degrees. All rights reserved
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-using Azure.Storage.Blobs.Models;
+﻿using Azure.Storage.Blobs.Models;
 using System;
 using System.Threading.Tasks;
 
-namespace Matrix.PaymentGateway.Infra.Blob.Contracts
+namespace GuessWho.Infra.Blob.Contracts
 {
     /// <summary>
     /// Execute Blob reader operations

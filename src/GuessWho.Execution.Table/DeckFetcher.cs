@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using GuessWho.Execution.Contracts;
 using GuessWho.Execution.Dtos;
+using GuessWho.Infra.Blob.Contracts;
+using GuessWho.Infra.TableStorage.Contracts;
 using GuessWho.Models;
-using Matrix.PaymentGateway.Infra.Blob.Contracts;
-using Matrix.PaymentGateway.Infra.TableStorage.Contracts;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

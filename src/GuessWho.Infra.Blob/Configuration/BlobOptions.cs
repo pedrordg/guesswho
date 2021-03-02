@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Matrix.PaymentGateway.Infra.Blob.Configuration
+namespace GuessWho.Infra.Blob.Configuration
 {
     /// <summary>
     /// Blob Options

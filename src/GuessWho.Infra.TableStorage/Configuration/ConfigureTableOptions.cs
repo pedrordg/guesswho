@@ -1,13 +1,7 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConfigureTableOptions.cs" company="Five Degrees">
-// Copyright (c) Five Degrees. All rights reserved
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
-namespace Matrix.PaymentGateway.Infra.TableStorage.Configuration
+namespace GuessWho.Infra.TableStorage.Configuration
 {
     public class ConfigureTableOptions : IConfigureOptions<TableOptions>
     {

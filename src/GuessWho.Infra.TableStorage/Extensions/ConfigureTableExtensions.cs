@@ -1,18 +1,12 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConfigureTableExtensions.cs" company="Five Degrees">
-// Copyright (c) Five Degrees. All rights reserved
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-using Matrix.PaymentGateway.Infra.TableStorage.Configuration;
-using Matrix.PaymentGateway.Infra.TableStorage.Contracts;
-using Matrix.PaymentGateway.Infra.TableStorage.Setup;
+﻿using GuessWho.Infra.TableStorage.Configuration;
+using GuessWho.Infra.TableStorage.Contracts;
+using GuessWho.Infra.TableStorage.Setup;
 using Microsoft.Azure.Cosmos.Table;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
 
-namespace Matrix.PaymentGateway.Infra.TableStorage.Extensions
+namespace GuessWho.Infra.TableStorage.Extensions
 {
     public static class ConfigureTableExtensions
     {

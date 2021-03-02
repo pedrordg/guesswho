@@ -3,19 +3,22 @@ using AutoMapper;
 using GuessWho.App.IdProvider;
 using GuessWho.Execution.Automapper;
 using GuessWho.Execution.Table;
+using GuessWho.Infra.Blob.Extensions;
+using GuessWho.Infra.TableStorage.Extensions;
 using GuessWho.Infrastructure.SignalR;
 using GuessWho.Models;
 using GuesWho.ExecutionDependencyInjection;
-using Matrix.PaymentGateway.Infra.Blob.Extensions;
-using Matrix.PaymentGateway.Infra.TableStorage.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
+using Microsoft.Net.Http.Headers;
+using System;
 using System.Threading.Tasks;
 
 namespace GuessWho.App
@@ -121,7 +124,7 @@ namespace GuessWho.App
 
             app.UseCors();
 
-            //app.UseResponseCaching();
+            app.UseResponseCaching();
 
             app.UseHttpsRedirection();
 
@@ -129,19 +132,19 @@ namespace GuessWho.App
             app.UseAuthentication();
             app.UseAuthorization();
 
-            //app.Use(async (context, next) =>
-            //{
-            //    context.Response.GetTypedHeaders().CacheControl =
-            //        new CacheControlHeaderValue()
-            //        {
-            //            Public = true,
-            //            MaxAge = TimeSpan.FromMinutes(10)
-            //        };
-            //    context.Response.Headers[HeaderNames.Vary] =
-            //        new string[] { "Accept-Encoding" };
+            app.Use(async (context, next) =>
+            {
+                context.Response.GetTypedHeaders().CacheControl =
+                    new CacheControlHeaderValue()
+                    {
+                        Public = true,
+                        MaxAge = TimeSpan.FromMinutes(10)
+                    };
+                context.Response.Headers[HeaderNames.Vary] =
+                    new string[] { "Accept-Encoding" };
 
-            //    await next();
-            //});
+                await next();
+            });
 
             app.UseEndpoints(endpoints =>
             {

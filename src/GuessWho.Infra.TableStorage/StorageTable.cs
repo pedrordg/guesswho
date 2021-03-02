@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using Matrix.PaymentGateway.Infra.TableStorage.Contracts;
+using GuessWho.Infra.TableStorage.Contracts;
 using Microsoft.Azure.Cosmos.Table;
 using MoreLinq;
 using System;
@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Matrix.PaymentGateway.Infra.TableStorage
+namespace GuessWho.Infra.TableStorage
 {
     /// <summary>
     /// 

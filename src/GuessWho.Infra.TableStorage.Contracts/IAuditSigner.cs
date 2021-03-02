@@ -6,7 +6,7 @@
 
 using Microsoft.Azure.Cosmos.Table;
 
-namespace Matrix.PaymentGateway.Infra.TableStorage.Contracts
+namespace GuessWho.Infra.TableStorage.Contracts
 {
     /// <summary>
     /// 

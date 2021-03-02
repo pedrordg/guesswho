@@ -1,13 +1,13 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------------------------------------------------namespace Matrix.PaymentGateway.Infra.TableStorage
 // <copyright file="TableConfiguratorBuilder.cs" company="Five Degrees">
 // Copyright (c) Five Degrees. All rights reserved
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using Matrix.PaymentGateway.Infra.TableStorage.Contracts;
+using GuessWho.Infra.TableStorage.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Matrix.PaymentGateway.Infra.TableStorage.Setup
+namespace GuessWho.Infra.TableStorage.Setup
 {
     public class TableConfiguratorBuilder : ITableConfiguratorBuilder
     {

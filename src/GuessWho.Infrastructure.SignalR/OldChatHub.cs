@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace GuessWho.Infrastructure.SignalR
@@ -10,6 +9,11 @@ namespace GuessWho.Infrastructure.SignalR
     [Authorize]
     public class OldChatHub : Hub
     {
+        public OldChatHub()
+        {
+
+        }
+
         //chat
         public async Task SendMessage(string name, string message)
         {
@@ -19,7 +23,6 @@ namespace GuessWho.Infrastructure.SignalR
         //game
         public async Task FlipCard(string cardPosition)
         {
-            var claims = String.Join(", ", Context.User.Claims.Select(x => { return $"{x.Type}:{x.Value}"; }).ToArray());
             await Clients.AllExcept(Context.ConnectionId).SendAsync("FlipCard", cardPosition);
         }
 
@@ -38,26 +41,18 @@ namespace GuessWho.Infrastructure.SignalR
             await Clients.AllExcept(Context.ConnectionId).SendAsync("receiveAnswer", answerTypes.ToString());
         }
 
-        //group
-        public async Task AddToGame(string groupName)
-        {
-            await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
-
-            await Clients.Group(groupName).SendAsync("Send", $"{Context.ConnectionId} has joined the game {groupName}.");
-        }
-
-        public async Task RemoveFromGame(string groupName)
-        {
-            await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName);
-
-            await Clients.Group(groupName).SendAsync("Send", $"{Context.ConnectionId} has left the game {groupName}.");
-        }
-
         public async Task BroadcastConnectionAsync()
         {
-            await Clients.All.SendAsync("PlayerConnected", $"{Context.User.Identity.Name} is now online", Context.ConnectionId);
+            await Clients.All.SendAsync("PlayerConnected", Context.User.Identity.Name, Context.UserIdentifier);
 
             await base.OnConnectedAsync();
+        }
+
+        public override async Task OnDisconnectedAsync(Exception exception)
+        {
+            await Clients.All.SendAsync("PlayerDisconnected", Context.UserIdentifier);
+
+            await base.OnDisconnectedAsync(exception);
         }
     }
 }

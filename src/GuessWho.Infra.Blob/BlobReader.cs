@@ -1,20 +1,13 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BlobReader.cs" company="Five Degrees">
-// Copyright (c) Five Degrees. All rights reserved
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-using Azure;
+﻿using Azure;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
-using Matrix.PaymentGateway.Infra.Blob.Contracts;
+using GuessWho.Infra.Blob.Contracts;
 using System;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
-namespace Matrix.PaymentGateway.Infra.Blob
+namespace GuessWho.Infra.Blob
 {
     /// <inheritdoc cref="IBlobReader">
     /// <seealso cref="IBlobReader" />

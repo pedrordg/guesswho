@@ -1,17 +1,11 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConfigureBlobExtensions.cs" company="Five Degrees">
-// Copyright (c) Five Degrees. All rights reserved
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-using Azure.Storage.Blobs;
-using Matrix.PaymentGateway.Infra.Blob.Configuration;
-using Matrix.PaymentGateway.Infra.Blob.Contracts;
+﻿using Azure.Storage.Blobs;
+using GuessWho.Infra.Blob.Configuration;
+using GuessWho.Infra.Blob.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
 
-namespace Matrix.PaymentGateway.Infra.Blob.Extensions
+namespace GuessWho.Infra.Blob.Extensions
 {
     /// <summary>
     /// Configure Blob Extensions
