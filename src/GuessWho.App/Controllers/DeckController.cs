@@ -19,10 +19,10 @@ namespace GuessWho.App.Controllers
         }
 
         [HttpGet]
-        [Route("{deckId}")]
+        [Route("{id}")]
         public async Task<IActionResult> GetById(string id)
         {
-            var result = await _deckFetcher.GetDeckById(Constants.OurBiasTheme);
+            var result = await _deckFetcher.GetDeckById(id);
             return Ok(result);
         }
     }

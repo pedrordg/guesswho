@@ -25,7 +25,6 @@ namespace GuessWho.Execution.Automapper
             CreateMap<PlayerEntity, PlayerDto>()
                 .ForMember(dest => dest.Id, src => src.MapFrom(x => x.PartitionKey))
                 .ForMember(dest => dest.Name, src => src.MapFrom(x => x.Name))
-                .ForMember(dest => dest.Friends, src => src.MapFrom(x => x.Friends.Split(new char[] { ';' }).ToList()))
                 .ForAllOtherMembers(x => x.Ignore());
 
             CreateMap<CreatePlayerDto, PlayerEntity>()

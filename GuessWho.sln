@@ -31,13 +31,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuessWho.Models", "src\Gues
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuessWho.Execution.Table", "src\GuessWho.Execution.Table\GuessWho.Execution.Table.csproj", "{5A3446E7-FC6B-47B2-8364-774AE1D8BDF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessWho.Execution.Dtos", "src\GuessWho.Execution.Dtos\GuessWho.Execution.Dtos.csproj", "{3C1516D5-1746-4A68-A9E7-262A4F4C33CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuessWho.Execution.Dtos", "src\GuessWho.Execution.Dtos\GuessWho.Execution.Dtos.csproj", "{3C1516D5-1746-4A68-A9E7-262A4F4C33CF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuessWho.Execution.Contracts", "src\GuessWho.Execution.Contracts\GuessWho.Execution.Contracts.csproj", "{C15AC518-98E7-48AD-870B-E8E7A615BC8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuesWho.ExecutionDependencyInjection", "src\GuesWho.ExecutionDependencyInjection\GuesWho.ExecutionDependencyInjection.csproj", "{3C2D423F-D2B4-4BEB-A7B2-65443E5EE5A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuessWho.Execution.DependencyInjection", "src\GuesWho.ExecutionDependencyInjection\GuessWho.Execution.DependencyInjection.csproj", "{3C2D423F-D2B4-4BEB-A7B2-65443E5EE5A4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuessWho.Execution.Automapper", "src\GuessWho.Execution.Automapper\GuessWho.Execution.Automapper.csproj", "{F1581A72-8995-4E87-801A-EC2714279B40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessWho.SignalR.DependencyInjection", "src\GuessWho.SignalR.DependencyInjection\GuessWho.SignalR.DependencyInjection.csproj", "{42BD37CB-F031-42DA-8345-097C67D62BAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,6 +99,10 @@ Global
 		{F1581A72-8995-4E87-801A-EC2714279B40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1581A72-8995-4E87-801A-EC2714279B40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1581A72-8995-4E87-801A-EC2714279B40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42BD37CB-F031-42DA-8345-097C67D62BAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42BD37CB-F031-42DA-8345-097C67D62BAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42BD37CB-F031-42DA-8345-097C67D62BAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42BD37CB-F031-42DA-8345-097C67D62BAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -119,6 +125,7 @@ Global
 		{C15AC518-98E7-48AD-870B-E8E7A615BC8C} = {E9350E4B-F107-41AB-85F5-C0B11C0F1369}
 		{3C2D423F-D2B4-4BEB-A7B2-65443E5EE5A4} = {E9350E4B-F107-41AB-85F5-C0B11C0F1369}
 		{F1581A72-8995-4E87-801A-EC2714279B40} = {E9350E4B-F107-41AB-85F5-C0B11C0F1369}
+		{42BD37CB-F031-42DA-8345-097C67D62BAC} = {3348DBF6-163F-4835-91ED-F5B296A77A08}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C410DA83-7BDB-4DC2-AC26-7BF8CB7654BF}

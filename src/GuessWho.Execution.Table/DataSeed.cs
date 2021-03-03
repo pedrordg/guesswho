@@ -19,6 +19,8 @@ namespace GuessWho.Execution.Table
         {
             ServiceProvider serviceProvider = tableConfiguratorBuilder.Services.BuildServiceProvider();
 
+            SeedPlayers(serviceProvider);
+
             SeedThemes(serviceProvider);
 
             SeedIdols(serviceProvider);
@@ -26,10 +28,132 @@ namespace GuessWho.Execution.Table
             return tableConfiguratorBuilder;
         }
 
+        public static void SeedPlayers(ServiceProvider serviceProvider)
+        {
+            ITable<PlayerEntity> playerTable = serviceProvider.GetRequiredService<ITable<PlayerEntity>>();
+
+            IEnumerable<PlayerEntity> steph1 = playerTable.QueryAsync(FilterBuilder.CreateForPartitionKey("82a79a3c-2ec4-4b74-9a8a-52d5ba502454")).Result;
+            if (!steph1.Any())
+            {
+                playerTable.InsertAsync(new PlayerEntity()
+                {
+                    PartitionKey = "82a79a3c-2ec4-4b74-9a8a-52d5ba502454",
+                    RowKey = Guid.NewGuid().ToString(),
+                    Name = "Stephanie",
+                    CreationDate = DateTime.UtcNow,
+                    LastChangeDate = DateTime.UtcNow
+                }).Wait();
+            }
+
+            IEnumerable<PlayerEntity> steph2 = playerTable.QueryAsync(FilterBuilder.CreateForPartitionKey("f2c190f2-705b-47bf-a342-ef23ce4795d7")).Result;
+            if (!steph2.Any())
+            {
+                playerTable.InsertAsync(new PlayerEntity()
+                {
+                    PartitionKey = "f2c190f2-705b-47bf-a342-ef23ce4795d7",
+                    RowKey = Guid.NewGuid().ToString(),
+                    Name = "Steph",
+                    CreationDate = DateTime.UtcNow,
+                    LastChangeDate = DateTime.UtcNow
+                }).Wait();
+            }
+
+            IEnumerable<PlayerEntity> pedro1 = playerTable.QueryAsync(FilterBuilder.CreateForPartitionKey("37bdd8c2-4315-4e70-8470-aae61805ba1e")).Result;
+            if (!pedro1.Any())
+            {
+                playerTable.InsertAsync(new PlayerEntity()
+                {
+                    PartitionKey = "37bdd8c2-4315-4e70-8470-aae61805ba1e",
+                    RowKey = Guid.NewGuid().ToString(),
+                    Name = "Pedro",
+                    CreationDate = DateTime.UtcNow,
+                    LastChangeDate = DateTime.UtcNow
+                }).Wait();
+            }
+
+            IEnumerable<PlayerEntity> pedro2 = playerTable.QueryAsync(FilterBuilder.CreateForPartitionKey("40a63e1c-c39f-4265-b022-e5340a9c59c6")).Result;
+            if (!pedro2.Any())
+            {
+                playerTable.InsertAsync(new PlayerEntity()
+                {
+                    PartitionKey = "40a63e1c-c39f-4265-b022-e5340a9c59c6",
+                    RowKey = Guid.NewGuid().ToString(),
+                    Name = "Pedro giga1 email",
+                    CreationDate = DateTime.UtcNow,
+                    LastChangeDate = DateTime.UtcNow
+                }).Wait();
+            }
+
+            ITable<PlayerRelationEntity> playerRelationTable = serviceProvider.GetRequiredService<ITable<PlayerRelationEntity>>();
+            //stephs friends
+            IEnumerable<PlayerRelationEntity> stephsfriends = playerRelationTable.QueryAsync(FilterBuilder.CreateForPartitionKey("82a79a3c-2ec4-4b74-9a8a-52d5ba502454")).Result;
+            if (!stephsfriends.Any(c => c.RowKey == "37bdd8c2-4315-4e70-8470-aae61805ba1e"))
+            {
+                //pedro1
+                playerRelationTable.InsertAsync(new PlayerRelationEntity()
+                {
+                    PartitionKey = "82a79a3c-2ec4-4b74-9a8a-52d5ba502454",
+                    RowKey = "37bdd8c2-4315-4e70-8470-aae61805ba1e",
+                    CreationDate = DateTime.UtcNow,
+                    LastChangeDate = DateTime.UtcNow
+                }).Wait();
+            }
+
+            //pedro1 friends
+            IEnumerable<PlayerRelationEntity> pedro1Friends = playerRelationTable.QueryAsync(FilterBuilder.CreateForPartitionKey("37bdd8c2-4315-4e70-8470-aae61805ba1e")).Result;
+            if (!pedro1Friends.Any(c => c.RowKey == "82a79a3c-2ec4-4b74-9a8a-52d5ba502454"))
+            {
+                //steph1
+                playerRelationTable.InsertAsync(new PlayerRelationEntity()
+                {
+                    PartitionKey = "37bdd8c2-4315-4e70-8470-aae61805ba1e",
+                    RowKey = "82a79a3c-2ec4-4b74-9a8a-52d5ba502454",
+                    CreationDate = DateTime.UtcNow,
+                    LastChangeDate = DateTime.UtcNow
+                }).Wait();
+            }
+            if (!pedro1Friends.Any(c => c.RowKey == "f2c190f2-705b-47bf-a342-ef23ce4795d7"))
+            {
+                //steph2
+                playerRelationTable.InsertAsync(new PlayerRelationEntity()
+                {
+                    PartitionKey = "37bdd8c2-4315-4e70-8470-aae61805ba1e",
+                    RowKey = "f2c190f2-705b-47bf-a342-ef23ce4795d7",
+                    CreationDate = DateTime.UtcNow,
+                    LastChangeDate = DateTime.UtcNow
+                }).Wait();
+            }
+            if (!pedro1Friends.Any(c => c.RowKey == "40a63e1c-c39f-4265-b022-e5340a9c59c6"))
+            {
+                //pedro2
+                playerRelationTable.InsertAsync(new PlayerRelationEntity()
+                {
+                    PartitionKey = "37bdd8c2-4315-4e70-8470-aae61805ba1e",
+                    RowKey = "40a63e1c-c39f-4265-b022-e5340a9c59c6",
+                    CreationDate = DateTime.UtcNow,
+                    LastChangeDate = DateTime.UtcNow
+                }).Wait();
+            }
+
+            //pedro2 friends
+            IEnumerable<PlayerRelationEntity> pedro2friends = playerRelationTable.QueryAsync(FilterBuilder.CreateForPartitionKey("40a63e1c-c39f-4265-b022-e5340a9c59c6")).Result;
+            if (!pedro2friends.Any(c => c.RowKey == "37bdd8c2-4315-4e70-8470-aae61805ba1e"))
+            {
+                //pedro1
+                playerRelationTable.InsertAsync(new PlayerRelationEntity()
+                {
+                    PartitionKey = "40a63e1c-c39f-4265-b022-e5340a9c59c6",
+                    RowKey = "37bdd8c2-4315-4e70-8470-aae61805ba1e",
+                    CreationDate = DateTime.UtcNow,
+                    LastChangeDate = DateTime.UtcNow
+                }).Wait();
+            }
+        }
+
         public static void SeedThemes(ServiceProvider serviceProvider) 
         {
             ITable<ThemeEntity> themeTable = serviceProvider.GetRequiredService<ITable<ThemeEntity>>();
-            IEnumerable<ThemeEntity> themes = themeTable.QueryAsync("").Result;
+            IEnumerable<ThemeEntity> themes = themeTable.QueryAsync(FilterBuilder.CreateForPartitionKey(Constants.OurBiasTheme)).Result;
 
             if (!themes.Any(c => c.PartitionKey == Constants.OurBiasTheme))
             {

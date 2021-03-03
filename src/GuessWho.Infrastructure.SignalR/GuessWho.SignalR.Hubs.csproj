@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GuessWho.Execution.Contracts\GuessWho.Execution.Contracts.csproj" />
     <ProjectReference Include="..\GuessWho.SignalR.Contracts\GuessWho.SignalR.Contracts.csproj" />
   </ItemGroup>
 

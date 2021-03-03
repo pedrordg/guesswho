@@ -21,7 +21,8 @@
     <ProjectReference Include="..\GuessWho.Infra.Blob\GuessWho.Infra.Blob.csproj" />
     <ProjectReference Include="..\GuessWho.Infra.TableStorage\GuessWho.Infra.TableStorage.csproj" />
     <ProjectReference Include="..\GuessWho.Infrastructure.SignalR\GuessWho.SignalR.Hubs.csproj" />
-    <ProjectReference Include="..\GuesWho.ExecutionDependencyInjection\GuesWho.ExecutionDependencyInjection.csproj" />
+    <ProjectReference Include="..\GuessWho.SignalR.DependencyInjection\GuessWho.SignalR.DependencyInjection.csproj" />
+    <ProjectReference Include="..\GuesWho.ExecutionDependencyInjection\GuessWho.Execution.DependencyInjection.csproj" />
   </ItemGroup>
 
 

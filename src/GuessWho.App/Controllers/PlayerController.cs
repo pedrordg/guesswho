@@ -8,7 +8,7 @@ namespace GuessWho.App.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    [Authorize]
+    //[Authorize]
     public class PlayerController : ControllerBase
     {
         private readonly IPlayerFetcher _fetcher;
@@ -19,10 +19,18 @@ namespace GuessWho.App.Controllers
         }
 
         [HttpGet]
-        [Route("{deckId}")]
+        [Route("{id}")]
         public async Task<IActionResult> GetById(string id)
         {
             var result = await _fetcher.GetById(id);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("friends/{id}")]
+        public async Task<IActionResult> GetFriends(string id)
+        {
+            var result = await _fetcher.GetPlayerFriends(id);
             return Ok(result);
         }
     }

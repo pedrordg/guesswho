@@ -7,6 +7,7 @@ using GuessWho.Infra.Blob.Extensions;
 using GuessWho.Infra.TableStorage.Extensions;
 using GuessWho.Infrastructure.SignalR;
 using GuessWho.Models;
+using GuessWho.SignalR.DependencyInjection;
 using GuesWho.ExecutionDependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -102,6 +103,8 @@ namespace GuessWho.App
             services.ConfigureStorageTable()
                     .AddTable<IdolEntity>("idol")
                     .AddTable<ThemeEntity>("theme")
+                    .AddTable<PlayerEntity>("player")
+                    .AddTable<PlayerRelationEntity>("playerrelation")
                     .Seed();
         }
 
@@ -112,6 +115,7 @@ namespace GuessWho.App
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
             containerBuilder.RegisterModule<ExecutionModule>();
+            containerBuilder.RegisterModule<SignalRModule>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

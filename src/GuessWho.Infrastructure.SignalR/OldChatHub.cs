@@ -1,7 +1,9 @@
-﻿using GuessWho.SignalR.Contracts;
+﻿using GuessWho.Execution.Contracts;
+using GuessWho.SignalR.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace GuessWho.Infrastructure.SignalR
@@ -9,9 +11,13 @@ namespace GuessWho.Infrastructure.SignalR
     [Authorize]
     public class OldChatHub : Hub
     {
-        public OldChatHub()
-        {
+        private readonly IPlayerRelationFetcher _playerRelationFetcher;
+        private readonly IPlayerBag _playerBag;
 
+        public OldChatHub(IPlayerRelationFetcher playerRelationFetcher, IPlayerBag playerBag)
+        {
+            _playerRelationFetcher = playerRelationFetcher;
+            _playerBag = playerBag;
         }
 
         //chat
@@ -43,16 +49,24 @@ namespace GuessWho.Infrastructure.SignalR
 
         public async Task BroadcastConnectionAsync()
         {
-            await Clients.All.SendAsync("PlayerConnected", Context.User.Identity.Name, Context.UserIdentifier);
+            var playerFriends = (await _playerRelationFetcher.GetPlayerFriendIds(Context.UserIdentifier)).ToList();
+            await Clients.Users(playerFriends).SendAsync("PlayerConnected", Context.User.Identity.Name, Context.UserIdentifier);
 
-            await base.OnConnectedAsync();
+            _playerBag.AddPlayerToBag(Context.UserIdentifier);
+
+            var playersOnlineFriends = _playerBag.FetchOnlineFriends(playerFriends);
+            if (playersOnlineFriends.Any())
+            {
+                playersOnlineFriends.ToList().ForEach(friendId => Clients.User(Context.UserIdentifier).SendAsync("PlayerConnected", friendId));
+            }
         }
 
         public override async Task OnDisconnectedAsync(Exception exception)
         {
-            await Clients.All.SendAsync("PlayerDisconnected", Context.UserIdentifier);
+            var playerFriends = (await _playerRelationFetcher.GetPlayerFriendIds(Context.UserIdentifier)).ToList();
+            await Clients.Users(playerFriends).SendAsync("PlayerDisconnected", Context.UserIdentifier);
 
-            await base.OnDisconnectedAsync(exception);
+            _playerBag.RemovePlayerFromBag(Context.UserIdentifier);
         }
     }
 }

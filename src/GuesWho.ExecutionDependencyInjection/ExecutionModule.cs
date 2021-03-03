@@ -25,6 +25,7 @@ namespace GuesWho.ExecutionDependencyInjection
             builder.RegisterType<PlayerFetcher>().As<IPlayerFetcher>().InstancePerLifetimeScope();
             builder.RegisterType<DeckFetcher>().As<IDeckFetcher>().InstancePerLifetimeScope();
             builder.RegisterType<ImageFetcher>().As<IImageFetcher>().InstancePerLifetimeScope();
+            builder.RegisterType<PlayerRelationFetcher>().As<IPlayerRelationFetcher>().InstancePerLifetimeScope();
         }
     }
 }
