@@ -25,13 +25,5 @@ namespace GuessWho.App.Controllers
             var result = await _idolFetcher.GetIdolById(Constants.OurBiasTheme, id);
             return Ok(result);
         }
-
-        [HttpGet]
-        [Route("deck/{deckId}")]
-        public async Task<IActionResult> GetCardsByDeck(string deckId)
-        {
-            var result = await _idolFetcher.GetIdolsByDeck(Constants.OurBiasTheme);
-            return Ok(result);
-        }
     }
 }

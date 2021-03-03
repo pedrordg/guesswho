@@ -23,20 +23,6 @@ namespace GuessWho.Execution.Table
             _blobReader = blobReader;
         }
 
-        public async Task<IEnumerable<IdolDto>> GetIdolsByDeck(string deckId)
-        {
-            string query = FilterBuilder.CreateForPartitionKey(deckId);
-
-            IEnumerable<IdolEntity> idols = await _idolTable.QueryAsync(query);
-
-            return idols.Select(idol => 
-            {
-                var dto = _mapper.Map<IdolDto>(idol);
-                dto.Pic = _blobReader.DownloadContent(string.Format("{0}/{1}",idol.PartitionKey, idol.RowKey)).Result;
-                return dto;
-            });
-        }
-
         public async Task<IdolDto> GetIdolById(string deckId, string cardId)
         {
             string query = FilterBuilder.CreateForPartitionKeyAndRowKey(deckId, cardId);

@@ -5,10 +5,10 @@ namespace GuessWho.Execution.Contracts
 {
     public interface IIdolCrud
     {
-        Task<IdolDto> CreateConfiguration(CreateIdolDto createIdolDto);
+        Task<IdolDto> CreateIdol(CreateIdolDto createIdolDto);
 
-        Task<IdolDto> UpdateConfiguration(UpdateIdolDto updateIdolDto);
+        Task<IdolDto> UpdateIdol(UpdateIdolDto updateIdolDto);
 
-        Task DeleteConfiguration(DeleteIdolDto deleteIdolDto);
+        Task DeleteIdol(DeleteIdolDto deleteIdolDto);
     }
 }

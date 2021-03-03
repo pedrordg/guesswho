@@ -18,7 +18,11 @@ namespace GuesWho.ExecutionDependencyInjection
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<IdolCrud>().As<IIdolCrud>().InstancePerLifetimeScope();
+            builder.RegisterType<PlayerCrud>().As<IPlayerCrud>().InstancePerLifetimeScope();
+            builder.RegisterType<PlayerRelationCrud>().As<IPlayerRelationCrud>().InstancePerLifetimeScope();
+
             builder.RegisterType<IdolFetcher>().As<IIdolFetcher>().InstancePerLifetimeScope();
+            builder.RegisterType<PlayerFetcher>().As<IPlayerFetcher>().InstancePerLifetimeScope();
             builder.RegisterType<DeckFetcher>().As<IDeckFetcher>().InstancePerLifetimeScope();
             builder.RegisterType<ImageFetcher>().As<IImageFetcher>().InstancePerLifetimeScope();
         }

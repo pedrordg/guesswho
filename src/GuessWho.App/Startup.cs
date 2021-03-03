@@ -96,7 +96,7 @@ namespace GuessWho.App
                     });
 
             services.AddAutoMapper(typeof(GuessWhoProfile));
-
+ 
             services.ConfigureBlob();
 
             services.ConfigureStorageTable()

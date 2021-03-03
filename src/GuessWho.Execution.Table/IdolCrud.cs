@@ -24,29 +24,29 @@ namespace GuessWho.Execution
             _logger = logger;
         }
 
-        public async Task<IdolDto> CreateConfiguration(CreateIdolDto createIdolDto)
+        public async Task<IdolDto> CreateIdol(CreateIdolDto createIdolDto)
         {
-            _logger.LogDebug("Creating new configuration");
+            _logger.LogDebug("Creating new idol");
 
             IdolEntity entity = _mapper.Map<IdolEntity>(createIdolDto);
 
             if ((await _table.QueryAsync(FilterBuilder.CreateForPartitionKeyAndRowKey(entity.PartitionKey, entity.RowKey), 1)).Any())
             {
-                throw new Exception("There already exists an idol with this settings");
+                throw new Exception("There already exists an idol with this id");
             }
 
             await _table.InsertAsync(entity);
             return _mapper.Map<IdolDto>(entity);
         }
 
-        public async Task<IdolDto> UpdateConfiguration(UpdateIdolDto updateIdolDto)
+        public async Task<IdolDto> UpdateIdol(UpdateIdolDto updateIdolDto)
         {
-            _logger.LogDebug("Updating existing configuration");
+            _logger.LogDebug("Updating existing idol");
 
             IdolEntity entity = (await _table.QueryAsync(FilterBuilder.CreateForPartitionKeyAndRowKey(updateIdolDto.ThemeId, updateIdolDto.Id))).FirstOrDefault();
             if (entity == null)
             {
-                throw new Exception("No configuration exists with this settings");
+                throw new Exception("No idol exists with this id");
             }
 
             entity.Name = updateIdolDto.Name;
@@ -55,14 +55,14 @@ namespace GuessWho.Execution
             return _mapper.Map<IdolDto>(entity);
         }
 
-        public async Task DeleteConfiguration(DeleteIdolDto deleteIdolDto)
+        public async Task DeleteIdol(DeleteIdolDto deleteIdolDto)
         {
-            _logger.LogDebug("Deleting existing configuration");
+            _logger.LogDebug("Deleting existing idol");
 
             IdolEntity entity = (await _table.QueryAsync(FilterBuilder.CreateForPartitionKeyAndRowKey(deleteIdolDto.ThemeId, deleteIdolDto.Id))).FirstOrDefault();
             if (entity == null)
             {
-                throw new Exception("No configuration exists with this settings");
+                throw new Exception("No idol exists with this id");
             }
 
             await _table.DeleteAsync(entity);

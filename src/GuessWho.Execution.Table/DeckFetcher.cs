@@ -30,16 +30,12 @@ namespace GuessWho.Execution.Table
             IEnumerable<IdolEntity> idols = await _idolTable.QueryAsync(query);
 
             var result = new DeckDto();
-            result.Idols = idols
-                .Select(idol =>
-                {
-                    var dto = _mapper.Map<IdolDto>(idol);
-                    dto.Pic = _blobReader.DownloadContent(string.Format("{0}/{1}", idol.PartitionKey, idol.RowKey)).Result;
-                    return dto;
-                })
-                .Select((x, i) => new { Index = i, Value = x })
-                .GroupBy(x => x.Index / 6)
-                .Select(x => x.Select(v => v.Value));
+            result.Idols = idols.Select(idol =>
+            {
+                var dto = _mapper.Map<IdolDto>(idol);
+                dto.Pic = _blobReader.DownloadContent(string.Format("{0}/{1}", idol.PartitionKey, idol.RowKey)).Result;
+                return dto;
+            });
 
             return result;
         }

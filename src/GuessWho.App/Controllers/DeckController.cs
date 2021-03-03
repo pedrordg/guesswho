@@ -11,18 +11,18 @@ namespace GuessWho.App.Controllers
     [Authorize]
     public class DeckController : ControllerBase
     {
-        private readonly IDeckFetcher _idolFetcher;
+        private readonly IDeckFetcher _deckFetcher;
 
-        public DeckController(IDeckFetcher idolFetcher)
+        public DeckController(IDeckFetcher deckFetcher)
         {
-            _idolFetcher = idolFetcher;
+            _deckFetcher = deckFetcher;
         }
 
         [HttpGet]
         [Route("{deckId}")]
         public async Task<IActionResult> GetById(string id)
         {
-            var result = await _idolFetcher.GetDeckById(Constants.OurBiasTheme);
+            var result = await _deckFetcher.GetDeckById(Constants.OurBiasTheme);
             return Ok(result);
         }
     }

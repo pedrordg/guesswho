@@ -4,12 +4,10 @@ using System;
 
 namespace GuessWho.Models
 {
-    //partitionkey is playerId, aka oid from auth token
-    //rowkey is ?!?! random for now
-    public class PlayerEntity : TableEntity, IAudit
+    //partitionkey is playerId
+    //rowkey is friendId
+    public class PlayerRelationEntity : TableEntity, IAudit
     {
-        public string Name { get; set; }
-        public string Friends { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime LastChangeDate { get; set; }
     }
