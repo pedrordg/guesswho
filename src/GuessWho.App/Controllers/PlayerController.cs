@@ -1,6 +1,7 @@
 ﻿using GuessWho.Execution.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace GuessWho.App.Controllers
@@ -8,7 +9,7 @@ namespace GuessWho.App.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    //[Authorize]
+    [Authorize]
     public class PlayerController : ControllerBase
     {
         private readonly IPlayerFetcher _fetcher;
@@ -19,18 +20,18 @@ namespace GuessWho.App.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
-        public async Task<IActionResult> GetById(string id)
+        [Route("")]
+        public async Task<IActionResult> GetById()
         {
-            var result = await _fetcher.GetById(id);
+            var result = await _fetcher.GetById(User.FindFirstValue(ClaimTypes.NameIdentifier));
             return Ok(result);
         }
 
         [HttpGet]
-        [Route("friends/{id}")]
+        [Route("friends")]
         public async Task<IActionResult> GetFriends(string id)
         {
-            var result = await _fetcher.GetPlayerFriends(id);
+            var result = await _fetcher.GetPlayerFriends(User.FindFirstValue(ClaimTypes.NameIdentifier));
             return Ok(result);
         }
     }

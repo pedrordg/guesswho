@@ -1,6 +1,7 @@
 ﻿using GuessWho.Execution.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace GuessWho.App.Controllers
