@@ -57,7 +57,7 @@ namespace GuessWho.Infrastructure.SignalR
             var playersOnlineFriends = _playerBag.FetchOnlineFriends(playerFriends);
             if (playersOnlineFriends.Any())
             {
-                playersOnlineFriends.ToList().ForEach(friendId => Clients.User(Context.UserIdentifier).SendAsync("PlayerConnected", friendId));
+                playersOnlineFriends.ToList().ForEach(friendId => Clients.User(Context.UserIdentifier).SendAsync("PlayerConnected", "Pedro", friendId));
             }
         }
 
