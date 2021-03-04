@@ -50,14 +50,14 @@ namespace GuessWho.Infrastructure.SignalR
         public async Task BroadcastConnectionAsync()
         {
             var playerFriends = (await _playerRelationFetcher.GetPlayerFriendIds(Context.UserIdentifier)).ToList();
-            await Clients.Users(playerFriends).SendAsync("PlayerConnected", Context.User.Identity.Name, Context.UserIdentifier);
+            await Clients.Users(playerFriends).SendAsync("PlayerConnected", Context.UserIdentifier);
 
             _playerBag.AddPlayerToBag(Context.UserIdentifier);
 
             var playersOnlineFriends = _playerBag.FetchOnlineFriends(playerFriends);
             if (playersOnlineFriends.Any())
             {
-                playersOnlineFriends.ToList().ForEach(friendId => Clients.User(Context.UserIdentifier).SendAsync("PlayerConnected", "Pedro", friendId));
+                playersOnlineFriends.ToList().ForEach(friendId => Clients.User(Context.UserIdentifier).SendAsync("PlayerConnected", friendId));
             }
         }
 
