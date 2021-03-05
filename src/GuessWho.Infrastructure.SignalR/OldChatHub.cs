@@ -20,33 +20,38 @@ namespace GuessWho.Infrastructure.SignalR
             _playerBag = playerBag;
         }
 
-        //chat
-        public async Task SendMessage(string name, string message)
-        {
-            await Clients.All.SendAsync("SendMessage", name, message);
-        }
-
         //game
-        public async Task FlipCard(string cardPosition)
+        public async Task FlipCard(string cardPosition, string userId)
         {
-            await Clients.AllExcept(Context.ConnectionId).SendAsync("FlipCard", cardPosition);
+            await Clients.User(userId).SendAsync("FlipCard", cardPosition);
         }
 
-        public async Task GuessCard(int cardId)
+        public async Task GuessCard(int cardId, string userId)
         {
-            await Clients.AllExcept(Context.ConnectionId).SendAsync("GuessCard", cardId);
+            await Clients.User(userId).SendAsync("GuessCard", cardId);
         }
 
-        public async Task AskQuestion(string question)
+        public async Task AskQuestion(string question, string userId)
         {
-            await Clients.AllExcept(Context.ConnectionId).SendAsync("receiveQuestion", question);
+            await Clients.User(userId).SendAsync("receiveQuestion", question);
         }
 
-        public async Task AnswerQuestion(AnswerTypes answerTypes)
+        public async Task AnswerQuestion(AnswerTypes answerTypes, string userId)
         {
-            await Clients.AllExcept(Context.ConnectionId).SendAsync("receiveAnswer", answerTypes.ToString());
+            await Clients.User(userId).SendAsync("receiveAnswer", answerTypes.ToString());
         }
 
+        public async Task RequestGame(string friendId)
+        {
+            await Clients.User(friendId).SendAsync("GameRequested", Context.UserIdentifier);
+        }
+
+        public async Task AnswerGameRequest(string gamehostId, bool isGameAccepted)
+        {
+            await Clients.User(gamehostId).SendAsync("GameRequestAnswer", isGameAccepted, Context.UserIdentifier);
+        }
+
+        //login
         public async Task BroadcastConnectionAsync()
         {
             var playerFriends = (await _playerRelationFetcher.GetPlayerFriendIds(Context.UserIdentifier)).ToList();
